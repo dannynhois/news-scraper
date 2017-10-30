@@ -1,5 +1,16 @@
 const cheerio = require("cheerio");
 const request = require("request");
+const mongoose = require("mongoose");
+
+// Require all models
+var db = require("../models");
+
+// Set mongoose to leverage built in JavaScript ES6 Promises
+// Connect to the Mongo DB
+mongoose.Promise = Promise;
+mongoose.connect("mongodb://localhost/scraperhomework", {
+  useMongoClient: true
+});
 
 const URL = "https://www.nytimes.com/section/sports#latest-panel";
 
@@ -9,23 +20,31 @@ module.exports = function(app) {
       if (error) throw error;
       // console.log("response: ", response);
       // console.log("body: ", body);
-      let $ = cheerio.load(body);
-      let data = [];
+      const $ = cheerio.load(body);
+      const stories = [];
+      let count = 0;
       $(".story-body").each(function(i, story) {
-        let headline = $(story)
+        const headline = $(story)
           .find(".headline")
           .text();
-        let summary = $(story)
+        const summary = $(story)
           .find(".summary")
           .text();
-        let link = $(story)
+        const link = $(story)
           .find(".story-link")
           .attr("href");
         if (link) {
-          data.push({ headline, summary, link });
+          stories.push({headline, summary,link});
         }
       });
-      res.send(data);
+      db.Article
+        .insertMany(stories)
+        .then(dbArticle => {
+          res.send(dbArticle);
+        })
+        .catch(err => {
+            res.send(err);
+        });
     });
   });
 };
