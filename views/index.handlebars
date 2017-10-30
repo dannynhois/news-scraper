@@ -1,0 +1,15 @@
+<h1>index handlebars</h1>
+
+<div class="container">
+
+    {{!-- listing of articles --}}
+    {{#each .}}
+    <div class="article">
+        <h1><a target="_blank" href="{{this.link}}">{{this.headline}}</a></h1>
+        <p>{{this.summary}}</p>
+        <p>{{this._id}}</p>
+    </div>
+    {{/each}}
+    {{!-- end of listing of articles --}}
+
+</div>
