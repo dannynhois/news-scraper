@@ -16,7 +16,7 @@ module.exports = function(app) {
       if (err) throw err;
       // console.log(typeof articles);
       // res.json(articles);
-      res.render("index", articles);
+      res.render("index", {articles});
     });
   });
 };

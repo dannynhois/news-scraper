@@ -2,14 +2,18 @@
 
 <div class="container">
 
-    {{!-- listing of articles --}}
-    {{#each .}}
+    {{!-- listing of articles --}} {{#each articles}}
     <div class="article">
-        <h1><a target="_blank" href="{{this.link}}">{{this.headline}}</a></h1>
-        <p>{{this.summary}}</p>
-        <p>{{this._id}}</p>
+        <div class="card">
+            <div class="card-block">
+                <h4 class="card-title">{{this.headline}}</h4>
+                <p class="card-text">{{this.summary}}</p>
+                <p>Saved: {{this.saved}}</p>
+                <a target="_blank" href="{{this.link}}" class="card-link btn btn-primary">View Article</a>
+                <a href="" data-articleid="{{this._id}}" class="card-link save-btn btn btn-secondary">Save Article</a>
+            </div>
+        </div>
     </div>
-    {{/each}}
-    {{!-- end of listing of articles --}}
+    {{/each}} {{!-- end of listing of articles --}}
 
 </div>

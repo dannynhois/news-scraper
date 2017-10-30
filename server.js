@@ -28,6 +28,7 @@ app.use(methodOverride("_method"));
 
 //require routes
 require("./controllers/index")(app);
+require("./controllers/articles")(app);
 require("./controllers/scraper")(app);
 
 app.listen(PORT, () => {
