@@ -40,10 +40,10 @@ module.exports = function(app) {
       db.Article
         .insertMany(stories)
         .then(dbArticle => {
-          res.send(dbArticle);
+          res.redirect("/");
         })
         .catch(err => {
-            res.send(err);
+            res.redirect("/");
         });
     });
   });

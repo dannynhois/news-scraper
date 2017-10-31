@@ -6,29 +6,31 @@
     <a class="navbar-brand" href="#">News Scraper</a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="#">Home
+            <a class="nav-item nav-link" href="/">Home
+            </a>
+            <a class="nav-item nav-link active" href="#">Saved
                 <span class="sr-only">(current)</span>
             </a>
-            <a class="nav-item nav-link" href="/article/saved">Saved</a>
-            <a class="nav-item nav-link" href="/scraper">Scrape New Articles</a>
         </div>
     </div>
 </nav>
 
 <div class="container">
 
-    {{!-- listing of articles --}} {{#each articles}}
+    {{!-- listing of articles --}} 
+    {{#each articles}}
     <div class="article">
         <div class="card">
             <div class="card-block">
                 <h4 class="card-title">{{this.headline}}</h4>
                 <p class="card-text">{{this.summary}}</p>
                 <p>Saved: {{this.saved}}</p>
-                <a target="_blank" href="{{this.link}}" class="card-link btn btn-primary">View Article</a>
-                <button data-articleid="{{this._id}}" class="card-link save-btn btn btn-secondary">Save Article</button>
+                <button data-articleid="{{this._id}}" class="card-link btn btn-danger delete-btn">Delete Article</button>
+                <button data-articleid="{{this._id}}" class="card-link note-btn btn btn-secondary">Add Note</button>
             </div>
         </div>
     </div>
-    {{/each}} {{!-- end of listing of articles --}}
+    {{/each}} 
+    {{!-- end of listing of articles --}}
 
 </div>

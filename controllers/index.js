@@ -12,11 +12,11 @@ mongoose.connect("mongodb://localhost/scraperhomework", {
 
 module.exports = function(app) {
   app.get("/", (req, res) => {
-    db.Article.find({}, (err, articles) => {
+    db.Article.find({ saved: false }, (err, articles) => {
       if (err) throw err;
       // console.log(typeof articles);
       // res.json(articles);
-      res.render("index", {articles});
+      res.render("index", { articles });
     });
   });
 };
