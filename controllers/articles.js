@@ -94,4 +94,11 @@ module.exports = function(app) {
         res.json(err);
       });
   });
+
+  app.delete("/article/:articleid/note/:noteid", (req,res)=> {
+    db.Note.deleteOne({ _id: req.params.noteid }, (err, status) => {
+      if (err) throw err;
+      res.redirect("/article/saved");
+    });
+  })
 };
