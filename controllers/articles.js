@@ -3,10 +3,12 @@ const mongoose = require("mongoose");
 // Require all models
 var db = require("../models");
 
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraperhomework";
+
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/scraperhomework", {
+mongoose.connect(MONGODB_URI, {
   useMongoClient: true
 });
 
